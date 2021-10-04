@@ -39,7 +39,7 @@ carte.generateGraph()
 carte.plot(1)
 
 
-epsilon = 1
+epsilon = 3
 
 
 print("A* algorithm running ...")

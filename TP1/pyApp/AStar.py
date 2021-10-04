@@ -230,8 +230,8 @@ class Map:
             # if it corresponds to the goal node: end of algo with success
             if (nc.no == goalNodeNo):
                 successFlag = True
-                # print("  - Nb of iterations: " + str(iterationNb))
-                # print("  - Nb of nodes explored: "+str(len(closedList)))
+                print("  - Nb of iterations: " + str(iterationNb))
+                print("  - Nb of nodes explored: "+str(len(closedList)))
                 return closedList, successFlag
 
             # list of numeros of successors of node nc
@@ -252,8 +252,8 @@ class Map:
 
                     iterationNb = iterationNb+1
 
-        # print("  - Nb of iterations: " + str(iterationNb))
-        # print("  - Nb of nodes explored: "+str(len(closedList)))
+        print("  - Nb of iterations: " + str(iterationNb))
+        print("  - Nb of nodes explored: "+str(len(closedList)))
 
         return closedList, successFlag
 
@@ -278,6 +278,7 @@ class Map:
                     self.graph.listOfNodes[path[0]], self.graph.listOfNodes[parNode])
                 path.insert(0, parNode)
 
+        print("DISTANCE " + str(distance))
         return path, distance
 
     def plotPathOnMap(self, path, noFig=1):
