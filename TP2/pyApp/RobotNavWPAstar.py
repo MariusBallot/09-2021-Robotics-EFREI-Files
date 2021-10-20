@@ -54,23 +54,16 @@ carte.generateGraph()
 epsilon = 3
 
 
-print("A* algorithm running ...")
 closedList, successFlag = carte.AStarFindPath(0, 199, epsilon)
 # print closedList
 if (successFlag == True):
-    print("  - A* terminated with success: path found")
     path = carte.builtPath(closedList)
-
-    # carte.plotExploredTree(closedList, 3)
-    # carte.plotPathOnMap(path, 2)
-    # plt.text(0, -3, "Path size :" + str(pathLength))
 
 WPlist = []
 for i in closedList :
     wp = [carte.graph.listOfNodes[i].x, carte.graph.listOfNodes[i].y]
     WPlist.append(wp)
 
-# plt.show()
 
 
 # robot
@@ -118,6 +111,7 @@ for t in simu.t:
 
     d = WPManager.distanceToCurrentWP(robot.x,robot.y)
 
+    #stockage des points de déplacement du robot
     robPosx.append(robot.x)
     robPosy.append(robot.y)
     
@@ -172,14 +166,15 @@ simu.plotXY(1, 0, 20, 0, 10)
 
 #simu.runAnimation(WPManager.epsilonWP, 5)
 
-# Animation *********************************
+
 fig = plt.figure(1)
 carte.plotPathOnMap(path, 4)
-#ax = fig.add_subplot(111, aspect='equal', autoscale_on=False, xlim=(-1, 21), ylim=(-1, 11))
-#plt.grid()
 plt.xlabel('x (m)')
 plt.ylabel('y (m)')
+
+#PATH DRAWING ON  MAP20X10
 robotBody, = plt.plot(robPosx, robPosy, 'o-', lw=1)
+
 robotDirection, = plt.plot([], [], '-', lw=1, color='k')
 wayPoint, = plt.plot([], [], 'o-', lw=2, color='b')
 time_template = 'time = %.1fs'
