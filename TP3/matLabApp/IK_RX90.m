@@ -40,24 +40,30 @@ q(i, 3) = atan2(- p4(3) * sin(q(i, 2)) + lambda(i) * cos(q(i, 2))-L2, lambda(i) 
 end
 
 
+%Pre-call Theta4, 5, 6
 T06(1:3, 1:3) = R;
 T06(1:3, 4) = p;
 T06(4, :) = [0 0 0 1];
 
+%computing des Solutions de 1 a 6 
 i = 1;
 while (i < 7)
     TH01 = TH(q(i, 1), dh(1, :));
     TH12 = TH(q(i, 2), dh(2, :));
     TH23 = TH(q(i, 3), dh(3, :));
     T = inv(TH01 * TH12 * TH23)*T06;
-    % theta5 and theta4 q(i,5) = atan2(sqrt(T(1,3)*T(1,3)+T(2,3)*T(2,3)),T(3,3)Yr-4
+    
+    
+    % Cacules de theta5 and theta4
+    q(i,5) = atan2(sqrt(T(1,3)*T(1,3)+T(2,3)*T(2,3)),T(3,3));
  
     if (sin(q(i, 5)) == 0)
         q(i, 4) = q_k(4);
     else
         q(i, 4) = atan2(T(2, 4), T(1, 4));
     end
-    % theta6
+    
+    % pour theta6
     TH34 = TH(q(i, 4), dh(4, :));
     TH45 = TH(q(i, 5), dh(5, :));
     V = inv(TH34 * TH45) * T;
@@ -94,6 +100,9 @@ for(i=1:8)
     end
 end
 
+%Algo de chois de la meilleur config
+%Avec k l'index de la config dans q, le set des différentes configs
+
 qmiddle = [0;-pi/2;pi/2;0;0;0];
 norme_min = inf;
 for(i=2:8)
@@ -107,5 +116,6 @@ end
 %%% End of your code %%%
 
 conf = q(k, :)';
+disp(q);
 
 end
